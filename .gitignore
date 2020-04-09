@@ -1,0 +1,8 @@
+tasks
+src/*.o
+*.swp
+doVVVAnalysis
+logger_metis.log
+condor/samples.pyc
+condor/package.tar.xz
+condor/package.tar.gz
