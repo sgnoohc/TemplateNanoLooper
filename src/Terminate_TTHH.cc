@@ -1,11 +1,11 @@
-#include "Terminate_4LepMET.h"
+#include "Terminate_TTHH.h"
 
-void Terminate_4LepMET()
+void Terminate_TTHH()
 {
     //==============================================
-    // Terminate_4LepMET:
+    // Terminate_TTHH:
     // This function gets called after the event looping.
-    // This is where one does stuff that needs to happen after the event looping for category 4LepMET.
+    // This is where one does stuff that needs to happen after the event looping for category TTHH.
     //==============================================
 
     // To place eventlist writing or something that needs to happen post loop.

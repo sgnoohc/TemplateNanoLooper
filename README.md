@@ -1,14 +1,14 @@
-# VVVNanoLooper
+# TemplateNanoLooper
 
 ## Installation
 
     ssh uaf-10.t2.ucsd.edu
     cd your/favoriate/working/directory
-    git clone --recursive git@github.com:sgnoohc/VVVNanoLooper.git
-    cd VVVNanoLooper/
+    git clone --recursive git@github.com:sgnoohc/TemplateNanoLooper.git
+    cd TemplateNanoLooper/
     source rooutil/thisrooutil.sh
     source rooutil/root.sh
-    make cleansmall; // Clean only VVV looper related
+    make cleansmall; // Clean only Template looper related
     make clean; // Full clean include NanoTools/rooutil related objects
     make -j;
 
@@ -16,14 +16,14 @@
 
 Below command will create ```debug.root``` output from the loop
 
-     ./doVVVAnalysis --input /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root \
+     ./doAnalysis --input /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root \
         --tree Events \
         --mode 0 \
         --debug
 
 Alternatively, if you want to write it out to ```my_output.root```,
 
-     ./doVVVAnalysis --input /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root \
+     ./doAnalysis --input /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root \
         --tree Events \
         --mode 0 \
         --output my_output.root
@@ -32,15 +32,13 @@ This will create some dummy histograms with dummy variables with dummy selection
 
 ## Code organization
 
-The ```doVVVAnalysis``` executable will take in NanoAOD root file and produce histograms (or TTree--but currently not implemented).
+The ```doAnalysis``` executable will take in NanoAOD root file and produce histograms (or TTree--but currently not implemented).
 
-The development of different VVV channel will be modular by the option ```--mode```.
+The development of different analysis will be modular by the option ```--mode```.
 
 Currently the implemented catgories are
 
-      -m, --mode arg         Looper mode (--mode 0=k4LepMET, 1=k4Lep2jet,
-                             2=k3LepMET, 3=k3Lep2jet, 4=kOS4jet, 5=kOS2jet, 6=kSS2jet,
-                             7=k1Lep4jet)
+      -m, --mode arg         Looper mode (--mode 0=VBSHWW 1=TTHH)
 
 ### Begin, Process, Terminate concept
 
@@ -180,7 +178,7 @@ And in this line 25, I used to have ```getBranch``` instead ```getBranchLazy```.
 
 The following is the full print out
 
-    $ gdb --args ./doVVVAnalysis -i /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root -t Events -m 0 -o my_output.root -d
+    $ gdb --args ./doAnalysis -i /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root -t Events -m 0 -o my_output.root -d
     GNU gdb (GDB) 7.12
     Copyright (C) 2016 Free Software Foundation, Inc.
     License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -195,9 +193,9 @@ The following is the full print out
     <http://www.gnu.org/software/gdb/documentation/>.
     For help, type "help".
     Type "apropos word" to search for commands related to "word"...
-    Reading symbols from ./doVVVAnalysis...done.
+    Reading symbols from ./doAnalysis...done.
     (gdb) r
-    Starting program: /home/users/phchang/public_html/analysis/vvv/VVVNanoLooper/doVVVAnalysis -i /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root -t Events -m 0 -o my_output.root -d
+    Starting program: /home/users/phchang/public_html/analysis/vvv/TemplateNanoLooper/doAnalysis -i /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root -t Events -m 0 -o my_output.root -d
     warning: File "/cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/gcc/7.0.0-njopjo/lib64/libstdc++.so.6.0.23-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
     To enable execution of this file add
             add-auto-load-safe-path /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/gcc/7.0.0-njopjo/lib64/libstdc++.so.6.0.23-gdb.py
@@ -227,7 +225,7 @@ The following is the full print out
     Linux uaf-10.t2.ucsd.edu 2.6.32-754.3.5.el6.x86_64 #1 SMP Tue Aug 14 20:46:41 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
     Thu Apr  9 00:09:46 PDT 2020
     phchang
-    /home/users/phchang/public_html/analysis/vvv/VVVNanoLooper
+    /home/users/phchang/public_html/analysis/vvv/TemplateNanoLooper
     RooUtil::  _
     RooUtil:: /\\
     RooUtil:: \ \\  \__/ \__/
@@ -248,7 +246,7 @@ The following is the full print out
     RooUtil:: ==================================================================================================================================================================================================================================================================================================================
     RooUtil:: Root                                                                                                                                                                                                                    | 0 | 0.000000|
     RooUtil::   Wgt                                                                                                                                                                                                                   | 0 | 0.000000|
-    RooUtil::     VVVCommonCut                                                                                                                                                                                                        | 0 | 0.000000|
+    RooUtil::     CommonCut                                                                                                                                                                                                        | 0 | 0.000000|
     RooUtil::       4LepMET_Preselection                                                                                                                                                                                              | 0 | 0.000000|
     RooUtil:: TTreeCache enabled
     RooUtil:: Looping /hadoop/cms/store/group/snt/nanoaod/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8__RunIIAutumn18NanoAODv5-Nano1June2019_102X_upgrade2018_realistic_v19-v1/C91570D8-46E6-6A4F-B722-857B9C5FE1F4.root/TTree:Events
@@ -287,7 +285,7 @@ If you look through the log file, (e.g. log files like the form ```tasks/CondorT
 
                     --- begin running ---
           
-    this line -->   Executing ./doVVVAnalysis -i /store/mc/RunIIAutumn18MiniAOD/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15_ext1-v2/00000/006AF719-2610-7E4E-8E0D-A5AD173A6
+    this line -->   Executing ./doAnalysis -i /store/mc/RunIIAutumn18MiniAOD/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15_ext1-v2/00000/006AF719-2610-7E4E-8E0D-A5AD173A6
                     =========================================================
                      Setting of the analysis job based on provided arguments
                     ---------------------------------------------------------

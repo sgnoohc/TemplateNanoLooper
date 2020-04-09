@@ -15,14 +15,8 @@ void Process()
 
     switch (ana.looperMode)
     {
-        case AnalysisConfig::k4LepMET: Process_4LepMET(); break;
-        case AnalysisConfig::k4Lep2jet: Process_4Lep2jet(); break;
-        case AnalysisConfig::k3LepMET: Process_3LepMET(); break;
-        case AnalysisConfig::k3Lep2jet: Process_3Lep2jet(); break;
-        case AnalysisConfig::kOS4jet: Process_OS4jet(); break;
-        case AnalysisConfig::kOS2jet: Process_OS2jet(); break;
-        case AnalysisConfig::kSS2jet: Process_SS2jet(); break;
-        case AnalysisConfig::k1Lep4jet: Process_1Lep4jet(); break;
+        case AnalysisConfig::VBSHWW: Process_VBSHWW(); break;
+        case AnalysisConfig::TTHH: Process_TTHH(); break;
     }
 
     // At this point, variables are all computed and set

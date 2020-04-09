@@ -16,7 +16,8 @@ if [ -z $1 ]; then
     echo "    Terminate_MyAnalysis.cc  (Where you do things after the event loop is done.)"
     echo "    Terminate_MyAnalysis.h"
     echo ""
-    echo "  NOTE: Once the template is created, each user is responsible plugging them into the master Begin.cc/h Process.cc/h and Terminate.cc/h"
+    echo "  NOTE: Once the template is created, each user is responsible plugging them into the master Begin.cc/h, Process.cc/h, Terminate.cc/h"
+    echo "        Also do not forget to add the --mode option handling in the main.cc"
     echo ""
     echo 
     exit

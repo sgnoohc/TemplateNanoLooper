@@ -60,9 +60,11 @@ void Process_Common()
     for (unsigned int ijet = 0; ijet < nt.Jet_p4().size(); ++ijet)
     {
 
-        // TODO: 30 GeV is OK?
-        if (not (nt.Jet_p4()[ijet].pt() > 30.))
-            continue;
+        // Selections
+        // TODO: What is POG recommendation? do we use nt.Jet_jetId()? nt.Jet_puId()??
+        // Figure this out
+        if (not (nt.Jet_p4()[ijet].pt() > 30.)) continue;
+        if (not (nt.Jet_jetId()[ijet] & 1<<1)) continue; // second bit is the tight selection
 
         // Because every muon and electron shows up in PF Jet collections
         // Need to check against leptons
@@ -94,8 +96,6 @@ void Process_Common()
         if (is_overlapping_with_a_lepton)
             continue;
 
-        // TODO: What is POG recommendation? do we use nt.Jet_jetId()? nt.Jet_puId()??
-        // Figure this out
         // For now, accept anything that reaches this point
 
         ana.tx.pushbackToBranch<int>("Common_jet_idxs", ijet);
@@ -109,6 +109,7 @@ void Process_Common()
     {
 
         // For now, accept anything above 250 GeV (TODO: is 250 GeV also ok?)
+        // TODO: What is POG recommendation? do we use nt.FatJet_jetId()?
         if (not (nt.FatJet_p4()[ifatjet].pt() > 250.))
             continue;
 
@@ -142,7 +143,6 @@ void Process_Common()
         if (is_overlapping_with_a_lepton)
             continue;
 
-        // TODO: What is POG recommendation? do we use nt.FatJet_jetId()?
         // Figure this out
 
         if (nt.FatJet_p4()[ifatjet].pt() > 250.)

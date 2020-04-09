@@ -9,14 +9,8 @@ class AnalysisConfig {
 public:
 
     enum LooperMode {
-        k4LepMET = 0,
-        k4Lep2jet,
-        k3LepMET,
-        k3Lep2jet,
-        kOS4jet,
-        kOS2jet,
-        kSS2jet,
-        k1Lep4jet,
+        VBSHWW = 0,
+        TTHH,
     };
 
     LooperMode looperMode;
